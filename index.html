@@ -4,10 +4,830 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Marginalis — Reading Journal</title>
+  <meta name="description" content="Marginalis is an iOS reading journal for physical book readers. Capture highlights with Live Text, organise your library, and share what moves you.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --cream: #F5F0E8;
+      --cream-dark: #EDE7D8;
+      --navy: #1C1C2E;
+      --navy-mid: #2E2E45;
+      --ink: #2A2A2A;
+      --ink-muted: #6B6B6B;
+      --ink-faint: #9B9B9B;
+      --rule: #D6CEBC;
+      --blue: #007AFF;
+      --white: #FFFFFF;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--cream);
+      color: var(--ink);
+      font-size: 16px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── HEADER ── */
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 2rem 4rem;
+      border-bottom: 0.5px solid var(--rule);
+    }
+
+    .wordmark {
+      font-family: 'EB Garamond', Georgia, serif;
+      font-size: 1.5rem;
+      font-weight: 500;
+      letter-spacing: 0.02em;
+      color: var(--ink);
+      text-decoration: none;
+    }
+
+    .wordmark span {
+      font-style: italic;
+      color: var(--ink-muted);
+      font-size: 0.9rem;
+      font-weight: 400;
+      margin-left: 0.75rem;
+    }
+
+    nav a {
+      font-size: 0.85rem;
+      font-weight: 400;
+      color: var(--ink-muted);
+      text-decoration: none;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      margin-left: 2rem;
+      transition: color 0.2s;
+    }
+
+    nav a:hover { color: var(--ink); }
+
+    /* ── HERO ── */
+    .hero {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      min-height: 88vh;
+      border-bottom: 0.5px solid var(--rule);
+    }
+
+    .hero-left {
+      padding: 6rem 4rem 6rem 4rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      border-right: 0.5px solid var(--rule);
+    }
+
+    .hero-eyebrow {
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--ink-faint);
+      margin-bottom: 2rem;
+    }
+
+    .hero-title {
+      font-family: 'EB Garamond', Georgia, serif;
+      font-size: clamp(3.5rem, 6vw, 5.5rem);
+      font-weight: 400;
+      line-height: 1.0;
+      letter-spacing: -0.01em;
+      color: var(--ink);
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-title em {
+      font-style: italic;
+      color: var(--ink-muted);
+    }
+
+    .hero-tagline {
+      font-family: 'EB Garamond', Georgia, serif;
+      font-size: 1.35rem;
+      font-style: italic;
+      color: var(--ink-muted);
+      margin-bottom: 3rem;
+      line-height: 1.4;
+    }
+
+    .hero-desc {
+      font-size: 1rem;
+      color: var(--ink-muted);
+      line-height: 1.8;
+      max-width: 38ch;
+      margin-bottom: 3rem;
+    }
+
+    .cta-group {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: var(--navy);
+      color: var(--cream);
+      padding: 0.85rem 1.75rem;
+      border-radius: 2px;
+      font-size: 0.875rem;
+      font-weight: 500;
+      letter-spacing: 0.02em;
+      text-decoration: none;
+      transition: background 0.2s;
+    }
+
+    .btn-primary:hover { background: var(--navy-mid); }
+
+    .btn-secondary {
+      font-size: 0.875rem;
+      color: var(--ink-muted);
+      text-decoration: none;
+      border-bottom: 1px solid var(--rule);
+      padding-bottom: 1px;
+      transition: color 0.2s, border-color 0.2s;
+    }
+
+    .btn-secondary:hover {
+      color: var(--ink);
+      border-color: var(--ink-muted);
+    }
+
+    .hero-right {
+      background: var(--navy);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 4rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-right::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 39px,
+        rgba(255,255,255,0.03) 39px,
+        rgba(255,255,255,0.03) 40px
+      );
+    }
+
+    .quote-card {
+      position: relative;
+      z-index: 1;
+      background: var(--cream);
+      padding: 2.5rem;
+      max-width: 360px;
+      width: 100%;
+    }
+
+    .quote-mark {
+      font-family: 'EB Garamond', Georgia, serif;
+      font-size: 5rem;
+      line-height: 0.5;
+      color: var(--rule);
+      margin-bottom: 1.5rem;
+      display: block;
+    }
+
+    .quote-text {
+      font-family: 'EB Garamond', Georgia, serif;
+      font-size: 1.25rem;
+      font-style: italic;
+      line-height: 1.6;
+      color: var(--ink);
+      margin-bottom: 1.5rem;
+    }
+
+    .quote-divider {
+      width: 2rem;
+      height: 1px;
+      background: var(--rule);
+      margin-bottom: 1rem;
+    }
+
+    .quote-meta {
+      font-size: 0.8rem;
+      color: var(--ink-faint);
+      letter-spacing: 0.04em;
+    }
+
+    .quote-meta strong {
+      color: var(--ink-muted);
+      font-weight: 500;
+    }
+
+    .quote-tag {
+      display: inline-block;
+      margin-top: 1rem;
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      background: var(--navy);
+      color: var(--cream);
+      padding: 0.25rem 0.6rem;
+      border-radius: 1px;
+    }
+
+    /* ── SECTION LAYOUT ── */
+    section {
+      border-bottom: 0.5px solid var(--rule);
+    }
+
+    .section-header {
+      display: grid;
+      grid-template-columns: 1fr 3fr;
+      padding: 3rem 4rem;
+      border-bottom: 0.5px solid var(--rule);
+      align-items: baseline;
+    }
+
+    .section-label {
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--ink-faint);
+      padding-top: 0.25rem;
+    }
+
+    .section-title {
+      font-family: 'EB Garamond', Georgia, serif;
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 400;
+      line-height: 1.15;
+      color: var(--ink);
+    }
+
+    .section-title em { font-style: italic; color: var(--ink-muted); }
+
+    /* ── FEATURES ── */
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+    }
+
+    /* ── PRIVACY STRIP ── */
+    .privacy-strip {
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      align-items: center;
+      padding: 3.5rem 4rem;
+      gap: 4rem;
+      background: var(--cream-dark);
+    }
+
+    .privacy-headline {
+      font-family: 'EB Garamond', Georgia, serif;
+      font-size: 1.75rem;
+      font-weight: 400;
+      line-height: 1.2;
+      color: var(--ink);
+    }
+
+    .privacy-headline em {
+      font-style: italic;
+      color: var(--ink-muted);
+    }
+
+    .privacy-points {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.25rem;
+    }
+
+    .privacy-point {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+    }
+
+    .privacy-icon {
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: var(--navy);
+      flex-shrink: 0;
+      margin-top: 2px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .privacy-icon::after {
+      content: '';
+      width: 6px;
+      height: 3px;
+      border-left: 1.5px solid var(--cream);
+      border-bottom: 1.5px solid var(--cream);
+      transform: rotate(-45deg) translateY(-1px);
+    }
+
+    .privacy-point p {
+      font-size: 0.875rem;
+      color: var(--ink-muted);
+      line-height: 1.6;
+    }
+
+    .privacy-point strong {
+      display: block;
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: var(--ink);
+      margin-bottom: 0.2rem;
+    }
+
+    .feature {
+      padding: 3rem 2.5rem;
+      border-right: 0.5px solid var(--rule);
+    }
+
+    .feature:last-child { border-right: none; }
+
+    .feature-number {
+      font-family: 'EB Garamond', Georgia, serif;
+      font-size: 0.85rem;
+      color: var(--ink-faint);
+      margin-bottom: 1.5rem;
+      display: block;
+    }
+
+    .feature-title {
+      font-family: 'EB Garamond', Georgia, serif;
+      font-size: 1.4rem;
+      font-weight: 500;
+      color: var(--ink);
+      margin-bottom: 0.75rem;
+      line-height: 1.2;
+    }
+
+    .feature-desc {
+      font-size: 0.9rem;
+      color: var(--ink-muted);
+      line-height: 1.75;
+    }
+
+    /* ── NOTE TYPES ── */
+    .note-types {
+      padding: 4rem;
+    }
+
+    .note-types-intro {
+      font-family: 'EB Garamond', Georgia, serif;
+      font-size: 1.1rem;
+      font-style: italic;
+      color: var(--ink-muted);
+      max-width: 55ch;
+      margin-bottom: 3rem;
+      line-height: 1.7;
+    }
+
+    .note-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+    }
+
+    .chip {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      padding: 0.6rem 1.25rem;
+      border: 0.5px solid var(--rule);
+      background: var(--white);
+      font-size: 0.875rem;
+      color: var(--ink-muted);
+      border-radius: 2px;
+    }
+
+    .chip-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--navy);
+      flex-shrink: 0;
+    }
+
+    /* ── PULL QUOTE ── */
+    .pull-quote-section {
+      background: var(--navy);
+      padding: 6rem 4rem;
+      text-align: center;
+    }
+
+    .pull-quote {
+      font-family: 'EB Garamond', Georgia, serif;
+      font-size: clamp(1.75rem, 3.5vw, 2.75rem);
+      font-style: italic;
+      font-weight: 400;
+      color: var(--cream);
+      line-height: 1.35;
+      max-width: 22ch;
+      margin: 0 auto 2rem;
+    }
+
+    .pull-quote-sub {
+      font-size: 0.8rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(245,240,232,0.4);
+    }
+
+    /* ── PRICING ── */
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .pricing-plan {
+      padding: 4rem;
+      border-right: 0.5px solid var(--rule);
+    }
+
+    .pricing-plan:last-child { border-right: none; }
+
+    .plan-name {
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--ink-faint);
+      margin-bottom: 1.25rem;
+    }
+
+    .plan-price {
+      font-family: 'EB Garamond', Georgia, serif;
+      font-size: 3.5rem;
+      font-weight: 400;
+      color: var(--ink);
+      line-height: 1;
+      margin-bottom: 0.5rem;
+    }
+
+    .plan-price sup {
+      font-size: 1.5rem;
+      vertical-align: super;
+    }
+
+    .plan-desc {
+      font-size: 0.875rem;
+      color: var(--ink-muted);
+      margin-bottom: 2.5rem;
+      line-height: 1.7;
+    }
+
+    .plan-features {
+      list-style: none;
+    }
+
+    .plan-features li {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+      font-size: 0.9rem;
+      color: var(--ink-muted);
+      padding: 0.6rem 0;
+      border-top: 0.5px solid var(--rule);
+    }
+
+    .plan-features li::before {
+      content: '—';
+      color: var(--ink-faint);
+      flex-shrink: 0;
+      font-family: 'EB Garamond', Georgia, serif;
+    }
+
+    .plan-badge {
+      display: inline-block;
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      background: var(--navy);
+      color: var(--cream);
+      padding: 0.2rem 0.5rem;
+      border-radius: 1px;
+      margin-left: 0.5rem;
+      vertical-align: middle;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      padding: 3rem 4rem;
+      gap: 2rem;
+      align-items: start;
+    }
+
+    .footer-brand .wordmark {
+      display: block;
+      margin-bottom: 0.75rem;
+    }
+
+    .footer-tagline {
+      font-family: 'EB Garamond', Georgia, serif;
+      font-style: italic;
+      font-size: 0.95rem;
+      color: var(--ink-faint);
+    }
+
+    .footer-col h4 {
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--ink-faint);
+      margin-bottom: 1rem;
+    }
+
+    .footer-col a {
+      display: block;
+      font-size: 0.875rem;
+      color: var(--ink-muted);
+      text-decoration: none;
+      margin-bottom: 0.5rem;
+      transition: color 0.2s;
+    }
+
+    .footer-col a:hover { color: var(--ink); }
+
+    .footer-copy {
+      grid-column: 1 / -1;
+      padding-top: 2rem;
+      border-top: 0.5px solid var(--rule);
+      font-size: 0.75rem;
+      color: var(--ink-faint);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    /* ── COMING SOON BADGE ── */
+    .badge-soon {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--blue);
+      border: 0.5px solid var(--blue);
+      padding: 0.3rem 0.75rem;
+      border-radius: 2px;
+      margin-bottom: 1.75rem;
+    }
+
+    .badge-dot {
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: var(--blue);
+      animation: pulse 2s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.3; }
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      header { padding: 1.5rem 2rem; }
+      nav { display: none; }
+      .hero { grid-template-columns: 1fr; min-height: auto; }
+      .hero-left { padding: 4rem 2rem; border-right: none; border-bottom: 0.5px solid var(--rule); }
+      .hero-right { min-height: 50vh; }
+      .section-header { grid-template-columns: 1fr; padding: 2.5rem 2rem; gap: 0.5rem; }
+      .features-grid { grid-template-columns: 1fr 1fr; }
+      .privacy-strip { grid-template-columns: 1fr; gap: 2rem; padding: 2.5rem 2rem; }
+      .privacy-points { grid-template-columns: 1fr; }
+      .feature { border-right: none; border-bottom: 0.5px solid var(--rule); }
+      .note-types { padding: 2.5rem 2rem; }
+      .pull-quote-section { padding: 4rem 2rem; }
+      .pricing-grid { grid-template-columns: 1fr; }
+      .pricing-plan { border-right: none; border-bottom: 0.5px solid var(--rule); padding: 2.5rem 2rem; }
+      footer { grid-template-columns: 1fr; padding: 2.5rem 2rem; }
+      .footer-copy { flex-direction: column; gap: 0.5rem; text-align: center; }
+    }
+
+    @media (max-width: 600px) {
+      .features-grid { grid-template-columns: 1fr; }
+      .hero-title { font-size: 3rem; }
+    }
+  </style>
 </head>
 <body>
-  <h1>Marginalis</h1>
-  <p>Book Notes &amp; Highlights — coming soon to the App Store.</p>
-  <p>Questions or support: <a href="mailto:support@marginalis.app">support@marginalis.app</a></p>
+
+  <!-- HEADER -->
+  <header>
+    <a href="/" class="wordmark">Marginalis <span>Reading Journal</span></a>
+    <nav>
+      <a href="#features">Features</a>
+      <a href="#pricing">Pricing</a>
+      <a href="mailto:support@marginalis.app">Support</a>
+    </nav>
+  </header>
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-left">
+      <div class="badge-soon">
+        <span class="badge-dot"></span>
+        Coming to the App Store
+      </div>
+      <h1 class="hero-title">Reading<br>that leaves<br><em>a mark.</em></h1>
+      <p class="hero-tagline">Every great passage, always within reach.</p>
+      <p class="hero-desc">Marginalis is an iOS reading journal for physical book readers. Capture highlights with Live Text, organise your library, and revisit the passages that changed how you think.</p>
+      <div class="cta-group">
+        <a href="mailto:hello@marginalis.app" class="btn-primary">Get notified at launch</a>
+        <a href="#features" class="btn-secondary">See what's inside</a>
+      </div>
+    </div>
+    <div class="hero-right">
+      <div class="quote-card">
+        <span class="quote-mark">"</span>
+        <p class="quote-text">Not all those who wander are lost.</p>
+        <div class="quote-divider"></div>
+        <p class="quote-meta"><strong>J.R.R. Tolkien</strong> · The Fellowship of the Ring · p. 170</p>
+        <span class="quote-tag">Quote</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- FEATURES -->
+  <section id="features">
+    <div class="section-header">
+      <span class="section-label">Features</span>
+      <h2 class="section-title">Everything a serious<br>reader needs. <em>Nothing they don't.</em></h2>
+    </div>
+    <div class="features-grid">
+      <div class="feature">
+        <span class="feature-number">01</span>
+        <h3 class="feature-title">Live Text Capture</h3>
+        <p class="feature-desc">Point your camera at any page. iOS Live Text selects the words. Your note is created in seconds — no typing required.</p>
+      </div>
+      <div class="feature">
+        <span class="feature-number">02</span>
+        <h3 class="feature-title">Book Library</h3>
+        <p class="feature-desc">Organise books across Reading, Up Next, Wishlist, and Finished. Scan a barcode or search Open Library to add any title instantly.</p>
+      </div>
+      <div class="feature">
+        <span class="feature-number">03</span>
+        <h3 class="feature-title">Reading Stats</h3>
+        <p class="feature-desc">A heatmap of your reading activity, note type breakdown, favourite authors, and a tag cloud built from your own annotations.</p>
+      </div>
+      <div class="feature">
+        <span class="feature-number">04</span>
+        <h3 class="feature-title">Share as Card</h3>
+        <p class="feature-desc">Turn any note into a beautiful image card — paper or editorial style, portrait or square — and share it anywhere.</p>
+      </div>
+      <div class="feature">
+        <span class="feature-number">05</span>
+        <h3 class="feature-title">AI Book Summary</h3>
+        <p class="feature-desc">On supported devices, Marginalis generates an intelligent summary of your notes for any book — powered entirely on-device by Apple Intelligence. Your words never leave your phone.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- NOTE TYPES -->
+  <section>
+    <div class="note-types">
+      <p class="note-types-intro">Not every thought about a book is the same. Marginalis gives each kind of note its own voice — quote, idea, question, reaction, or summary.</p>
+      <div class="note-chips">
+        <div class="chip"><span class="chip-dot"></span>Quote</div>
+        <div class="chip"><span class="chip-dot"></span>Idea</div>
+        <div class="chip"><span class="chip-dot"></span>Question</div>
+        <div class="chip"><span class="chip-dot"></span>Reaction</div>
+        <div class="chip"><span class="chip-dot"></span>Summary</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRIVACY -->
+  <section>
+    <div class="privacy-strip">
+      <div>
+        <h2 class="privacy-headline">100% on your device.<br><em>Zero data collected. Ever.</em></h2>
+      </div>
+      <div class="privacy-points">
+        <div class="privacy-point">
+          <div class="privacy-icon"></div>
+          <div>
+            <strong>No account required</strong>
+            <p>Your library and notes live entirely on your iPhone. No sign-up, no cloud, no server.</p>
+          </div>
+        </div>
+        <div class="privacy-point">
+          <div class="privacy-icon"></div>
+          <div>
+            <strong>No tracking or analytics</strong>
+            <p>Marginalis contains zero advertising SDKs and zero analytics tools. Nothing phones home.</p>
+          </div>
+        </div>
+        <div class="privacy-point">
+          <div class="privacy-icon"></div>
+          <div>
+            <strong>AI runs on-device</strong>
+            <p>The AI book summary feature uses Apple Intelligence — processed entirely on your device.</p>
+          </div>
+        </div>
+        <div class="privacy-point">
+          <div class="privacy-icon"></div>
+          <div>
+            <strong>Your reading is private</strong>
+            <p>What you read and what you think about it is nobody's business but yours.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PULL QUOTE -->
+  <section>
+    <div class="pull-quote-section">
+      <p class="pull-quote">"Great books leave marks. Marginalis keeps them."</p>
+      <p class="pull-quote-sub">iOS · iPhone · Free to start</p>
+    </div>
+  </section>
+
+  <!-- PRICING -->
+  <section id="pricing">
+    <div class="section-header">
+      <span class="section-label">Pricing</span>
+      <h2 class="section-title">Simple, honest pricing.<br><em>Own it forever.</em></h2>
+    </div>
+    <div class="pricing-grid">
+      <div class="pricing-plan">
+        <p class="plan-name">Free</p>
+        <p class="plan-price">$0</p>
+        <p class="plan-desc">Start building your reading journal today. No time limit, no credit card.</p>
+        <ul class="plan-features">
+          <li>Up to 5 books in your library</li>
+          <li>Unlimited Wishlist books</li>
+          <li>Live Text capture</li>
+          <li>All five note types</li>
+          <li>Reading stats</li>
+          <li>Share as card</li>
+        </ul>
+      </div>
+      <div class="pricing-plan">
+        <p class="plan-name">Unlock</p>
+        <p class="plan-price"><sup>$</sup>4.99</p>
+        <p class="plan-desc">One purchase. No subscription. Yours forever. <span class="plan-badge">Launch $2.99</span></p>
+        <ul class="plan-features">
+          <li>Unlimited books in your library</li>
+          <li>Everything in Free</li>
+          <li>Buy books directly from your Wishlist</li>
+          <li>Export notes as Markdown</li>
+          <li>Full reading stats &amp; insights</li>
+          <li>All future V1 updates included</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-brand">
+      <a href="/" class="wordmark">Marginalis</a>
+      <p class="footer-tagline">Reading that leaves a mark.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Contact</h4>
+      <a href="mailto:support@marginalis.app">support@marginalis.app</a>
+      <a href="mailto:hello@marginalis.app">hello@marginalis.app</a>
+    </div>
+    <div class="footer-col">
+      <h4>Legal</h4>
+      <a href="/privacy">Privacy Policy</a>
+    </div>
+    <div class="footer-copy">
+      <span>© 2026 Marginalis. All rights reserved.</span>
+      <span>Designed for iPhone · iOS 16+</span>
+    </div>
+  </footer>
+
 </body>
 </html>
