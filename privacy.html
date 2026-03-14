@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Privacy Policy — Marginalis</title>
+  <meta name="description" content="Marginalis privacy policy. Your reading life is private. We collect no personal data.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --cream: #F5F0E8;
+      --cream-dark: #EDE7D8;
+      --navy: #1C1C2E;
+      --navy-mid: #2E2E45;
+      --ink: #2A2A2A;
+      --ink-muted: #6B6B6B;
+      --ink-faint: #9B9B9B;
+      --rule: #D6CEBC;
+      --blue: #007AFF;
+      --white: #FFFFFF;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--cream);
+      color: var(--ink);
+      font-size: 16px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── HEADER ── */
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 2rem 4rem;
+      border-bottom: 0.5px solid var(--rule);
+    }
+
+    .wordmark {
+      font-family: 'EB Garamond', Georgia, serif;
+      font-size: 1.5rem;
+      font-weight: 500;
+      letter-spacing: 0.02em;
+      color: var(--ink);
+      text-decoration: none;
+    }
+
+    .wordmark span {
+      font-style: italic;
+      color: var(--ink-muted);
+      font-size: 0.9rem;
+      font-weight: 400;
+      margin-left: 0.75rem;
+    }
+
+    nav a {
+      font-size: 0.85rem;
+      font-weight: 400;
+      color: var(--ink-muted);
+      text-decoration: none;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      margin-left: 2rem;
+      transition: color 0.2s;
+    }
+
+    nav a:hover { color: var(--ink); }
+
+    /* ── PAGE HERO ── */
+    .page-hero {
+      padding: 5rem 4rem 4rem;
+      border-bottom: 0.5px solid var(--rule);
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      gap: 4rem;
+      align-items: end;
+    }
+
+    .page-hero-label {
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--ink-faint);
+      margin-bottom: 1rem;
+      display: block;
+    }
+
+    .page-hero-title {
+      font-family: 'EB Garamond', Georgia, serif;
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      font-weight: 400;
+      line-height: 1.05;
+      color: var(--ink);
+    }
+
+    .page-hero-title em {
+      font-style: italic;
+      color: var(--ink-muted);
+    }
+
+    .page-hero-meta {
+      font-size: 0.8rem;
+      color: var(--ink-faint);
+      letter-spacing: 0.04em;
+      margin-bottom: 0.5rem;
+    }
+
+    .page-hero-summary {
+      font-family: 'EB Garamond', Georgia, serif;
+      font-size: 1.2rem;
+      font-style: italic;
+      color: var(--ink-muted);
+      line-height: 1.6;
+      max-width: 55ch;
+    }
+
+    /* ── CONTENT ── */
+    .content {
+      max-width: 780px;
+      margin: 0 auto;
+      padding: 4rem 4rem 6rem;
+    }
+
+    .toc {
+      background: var(--cream-dark);
+      padding: 2rem 2.5rem;
+      margin-bottom: 4rem;
+      border-left: 2px solid var(--navy);
+    }
+
+    .toc-label {
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--ink-faint);
+      margin-bottom: 1rem;
+      display: block;
+    }
+
+    .toc ol {
+      list-style: none;
+      counter-reset: toc;
+    }
+
+    .toc ol li {
+      counter-increment: toc;
+      margin-bottom: 0.4rem;
+    }
+
+    .toc ol li::before {
+      content: counter(toc) ". ";
+      font-family: 'EB Garamond', Georgia, serif;
+      color: var(--ink-faint);
+      font-size: 0.875rem;
+    }
+
+    .toc ol li a {
+      font-size: 0.875rem;
+      color: var(--ink-muted);
+      text-decoration: none;
+      border-bottom: 0.5px solid var(--rule);
+      transition: color 0.2s;
+    }
+
+    .toc ol li a:hover { color: var(--ink); }
+
+    /* ── SECTIONS ── */
+    .policy-section {
+      margin-bottom: 3.5rem;
+      padding-bottom: 3.5rem;
+      border-bottom: 0.5px solid var(--rule);
+    }
+
+    .policy-section:last-child {
+      border-bottom: none;
+    }
+
+    .section-number {
+      font-family: 'EB Garamond', Georgia, serif;
+      font-size: 0.85rem;
+      color: var(--ink-faint);
+      display: block;
+      margin-bottom: 0.5rem;
+    }
+
+    .policy-section h2 {
+      font-family: 'EB Garamond', Georgia, serif;
+      font-size: 1.75rem;
+      font-weight: 400;
+      color: var(--ink);
+      margin-bottom: 1.5rem;
+      line-height: 1.2;
+    }
+
+    .policy-section p {
+      font-size: 0.95rem;
+      color: var(--ink-muted);
+      line-height: 1.85;
+      margin-bottom: 1rem;
+    }
+
+    .policy-section p:last-child { margin-bottom: 0; }
+
+    .policy-section ul {
+      list-style: none;
+      margin: 1rem 0;
+    }
+
+    .policy-section ul li {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+      font-size: 0.95rem;
+      color: var(--ink-muted);
+      line-height: 1.75;
+      padding: 0.5rem 0;
+      border-top: 0.5px solid var(--rule);
+    }
+
+    .policy-section ul li:last-child {
+      border-bottom: 0.5px solid var(--rule);
+    }
+
+    .policy-section ul li::before {
+      content: '—';
+      font-family: 'EB Garamond', Georgia, serif;
+      color: var(--ink-faint);
+      flex-shrink: 0;
+    }
+
+    .policy-section strong {
+      color: var(--ink);
+      font-weight: 500;
+    }
+
+    /* ── HIGHLIGHT BOX ── */
+    .highlight-box {
+      background: var(--navy);
+      padding: 2rem 2.5rem;
+      margin: 2rem 0;
+    }
+
+    .highlight-box p {
+      font-family: 'EB Garamond', Georgia, serif;
+      font-size: 1.15rem;
+      font-style: italic;
+      color: var(--cream);
+      line-height: 1.6;
+      margin: 0;
+    }
+
+    /* ── CONTACT ── */
+    .contact-box {
+      background: var(--cream-dark);
+      padding: 2rem 2.5rem;
+      margin-top: 2rem;
+    }
+
+    .contact-box p {
+      font-size: 0.9rem;
+      color: var(--ink-muted);
+      margin-bottom: 0.5rem;
+    }
+
+    .contact-box a {
+      color: var(--ink);
+      font-weight: 500;
+      text-decoration: none;
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .contact-box a:hover {
+      border-color: var(--ink-muted);
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      padding: 3rem 4rem;
+      gap: 2rem;
+      align-items: start;
+      border-top: 0.5px solid var(--rule);
+    }
+
+    .footer-brand .wordmark {
+      display: block;
+      margin-bottom: 0.75rem;
+    }
+
+    .footer-tagline {
+      font-family: 'EB Garamond', Georgia, serif;
+      font-style: italic;
+      font-size: 0.95rem;
+      color: var(--ink-faint);
+    }
+
+    .footer-col h4 {
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--ink-faint);
+      margin-bottom: 1rem;
+    }
+
+    .footer-col a {
+      display: block;
+      font-size: 0.875rem;
+      color: var(--ink-muted);
+      text-decoration: none;
+      margin-bottom: 0.5rem;
+      transition: color 0.2s;
+    }
+
+    .footer-col a:hover { color: var(--ink); }
+
+    .footer-copy {
+      grid-column: 1 / -1;
+      padding-top: 2rem;
+      border-top: 0.5px solid var(--rule);
+      font-size: 0.75rem;
+      color: var(--ink-faint);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      header { padding: 1.5rem 2rem; }
+      nav { display: none; }
+      .page-hero { grid-template-columns: 1fr; padding: 3rem 2rem 2.5rem; gap: 1.5rem; }
+      .content { padding: 2.5rem 2rem 4rem; }
+      footer { grid-template-columns: 1fr; padding: 2.5rem 2rem; }
+      .footer-copy { flex-direction: column; gap: 0.5rem; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header>
+    <a href="/" class="wordmark">Marginalis <span>Reading Journal</span></a>
+    <nav>
+      <a href="/#features">Features</a>
+      <a href="/#pricing">Pricing</a>
+      <a href="mailto:support@marginalis.app">Support</a>
+    </nav>
+  </header>
+
+  <!-- PAGE HERO -->
+  <div class="page-hero">
+    <div>
+      <span class="page-hero-label">Legal</span>
+      <h1 class="page-hero-title">Privacy<br><em>Policy.</em></h1>
+    </div>
+    <div>
+      <p class="page-hero-meta">Last updated: March 2026 &nbsp;·&nbsp; Effective from first release</p>
+      <p class="page-hero-summary">Marginalis is built on a simple principle: your reading life is nobody's business but yours. This policy explains exactly what data we handle — and what we deliberately choose not to collect.</p>
+    </div>
+  </div>
+
+  <!-- CONTENT -->
+  <div class="content">
+
+    <!-- TOC -->
+    <div class="toc">
+      <span class="toc-label">Contents</span>
+      <ol>
+        <li><a href="#overview">The short version</a></li>
+        <li><a href="#data-stored">Data stored on your device</a></li>
+        <li><a href="#icloud">iCloud sync</a></li>
+        <li><a href="#camera">Camera and photo library</a></li>
+        <li><a href="#purchases">In-app purchases</a></li>
+        <li><a href="#affiliate">External links</a></li>
+        <li><a href="#ai">On-device AI</a></li>
+        <li><a href="#no-collection">What we do not collect</a></li>
+        <li><a href="#children">Children</a></li>
+        <li><a href="#your-rights">Your rights</a></li>
+        <li><a href="#changes">Changes to this policy</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ol>
+    </div>
+
+    <!-- 1. OVERVIEW -->
+    <div class="policy-section" id="overview">
+      <span class="section-number">01</span>
+      <h2>The short version</h2>
+      <div class="highlight-box">
+        <p>"Marginalis collects no personal data. Your books, notes, and reading life are stored on your device and optionally in your own iCloud account. We have no servers. We see nothing."</p>
+      </div>
+      <p>This policy applies to the Marginalis iOS app ("the app"), available on the Apple App Store, developed by [Your Name] ("we", "us"). If you have any questions, <a href="mailto:privacy@marginalis.app" style="color: var(--ink); border-bottom: 1px solid var(--rule);">contact us directly</a>.</p>
+    </div>
+
+    <!-- 2. DATA STORED -->
+    <div class="policy-section" id="data-stored">
+      <span class="section-number">02</span>
+      <h2>Data stored on your device</h2>
+      <p>Everything you create in Marginalis — your book library, notes, highlights, tags, and reading stats — is stored locally on your iPhone using Apple's Core Data framework. This data never leaves your device unless you explicitly enable iCloud sync (see section 3).</p>
+      <p>The following is stored locally:</p>
+      <ul>
+        <li>Books you add — title, author, ISBN, cover image, reading status, ratings</li>
+        <li>Notes and highlights — text, page numbers, note type, tags, comments</li>
+        <li>Source images captured from book pages (if you have this setting enabled)</li>
+        <li>App preferences and settings</li>
+      </ul>
+      <p>None of this data is transmitted to us or any third party. We have no servers, no database, and no way to access your content.</p>
+    </div>
+
+    <!-- 3. ICLOUD -->
+    <div class="policy-section" id="icloud">
+      <span class="section-number">03</span>
+      <h2>iCloud sync</h2>
+      <p>Marginalis optionally uses Apple's CloudKit to sync your data across your Apple devices via your personal iCloud account. This feature is opt-in and controlled from your iPhone's Settings app under your Apple ID.</p>
+      <p>When iCloud sync is enabled:</p>
+      <ul>
+        <li>Your books, notes, and library are synced to your personal iCloud account</li>
+        <li>Data is encrypted in transit and at rest by Apple</li>
+        <li>Sync is between your own devices only — we cannot access your iCloud data</li>
+        <li>You can disable iCloud sync at any time in iOS Settings</li>
+      </ul>
+      <p>When iCloud sync is disabled, all data remains local to your device only. iCloud data is governed by <a href="https://www.apple.com/legal/privacy/" target="_blank" rel="noopener" style="color: var(--ink); border-bottom: 1px solid var(--rule);">Apple's Privacy Policy</a>.</p>
+    </div>
+
+    <!-- 4. CAMERA -->
+    <div class="policy-section" id="camera">
+      <span class="section-number">04</span>
+      <h2>Camera and photo library</h2>
+      <p>Marginalis requests access to your camera and photo library to support two features:</p>
+      <ul>
+        <li><strong>Live Text capture</strong> — point your camera at a book page to capture a highlight directly into a note</li>
+        <li><strong>Book cover images</strong> — photograph or select a cover image for a book in your library</li>
+      </ul>
+      <p>Images captured through the camera are processed entirely on your device. They are never uploaded to any server. If you enable source image saving in Settings, the image is stored locally (and in iCloud if sync is enabled) alongside the note. You can disable source image saving at any time in the app's Settings tab.</p>
+      <p>Marginalis will never access your camera or photo library without your explicit permission.</p>
+    </div>
+
+    <!-- 5. PURCHASES -->
+    <div class="policy-section" id="purchases">
+      <span class="section-number">05</span>
+      <h2>In-app purchases</h2>
+      <p>Marginalis offers a one-time in-app purchase to unlock the full app. All purchases are processed entirely by Apple through the App Store. We never see, handle, or store your payment information.</p>
+      <p>Purchase status is verified locally on your device via Apple's StoreKit framework. To restore a previous purchase on a new device, use the "Restore Purchase" option in the app's Settings tab.</p>
+      <p>In-app purchases are governed by <a href="https://www.apple.com/legal/internet-services/itunes/us/terms.html" target="_blank" rel="noopener" style="color: var(--ink); border-bottom: 1px solid var(--rule);">Apple's Terms of Service</a>.</p>
+    </div>
+
+    <!-- 6. AFFILIATE -->
+    <div class="policy-section" id="affiliate">
+      <span class="section-number">06</span>
+      <h2>External links</h2>
+      <p>Marginalis includes a "Buy this book" feature on Wishlist books that opens an external link to an online bookstore in Safari. When you tap this link, you leave the Marginalis app and are subject to the privacy policy of the destination website.</p>
+      <p>We may earn a small commission if you purchase a book through this link. This does not affect the price you pay. No personal data about you is shared with any bookstore through this link — it contains only the book's ISBN.</p>
+      <p>We do not use tracking pixels, referral cookies set within the app, or any other mechanism to monitor your activity outside of Marginalis.</p>
+    </div>
+
+    <!-- 7. AI -->
+    <div class="policy-section" id="ai">
+      <span class="section-number">07</span>
+      <h2>On-device AI</h2>
+      <p>Marginalis includes an optional AI book summary feature that generates a summary of your notes for any book. This feature uses Apple Intelligence, Apple's on-device AI framework, available on supported devices running iOS 26 or later with Apple Intelligence enabled.</p>
+      <p>All AI processing happens entirely on your device. Your notes and book content are never sent to any server — not ours, not Apple's — for the purposes of this feature. The feature is completely hidden on devices that do not support Apple Intelligence.</p>
+    </div>
+
+    <!-- 8. NO COLLECTION -->
+    <div class="policy-section" id="no-collection">
+      <span class="section-number">08</span>
+      <h2>What we do not collect</h2>
+      <p>To be explicit, Marginalis does not collect, transmit, or store any of the following:</p>
+      <ul>
+        <li>Your name, email address, or any identifying information</li>
+        <li>Your location</li>
+        <li>Usage analytics or behavioural data</li>
+        <li>Crash reports sent to our servers</li>
+        <li>Advertising identifiers (IDFA)</li>
+        <li>Device fingerprints or identifiers</li>
+        <li>The content of your notes, books, or highlights</li>
+      </ul>
+      <p>Marginalis contains no third-party analytics SDKs, no advertising SDKs, and no social media tracking. The app does not make any network requests to our servers — because we have no servers.</p>
+    </div>
+
+    <!-- 9. CHILDREN -->
+    <div class="policy-section" id="children">
+      <span class="section-number">09</span>
+      <h2>Children</h2>
+      <p>Marginalis is rated 4+ on the App Store and is suitable for all ages. Because we collect no personal data from any user, there are no special provisions required for users under 13 (COPPA) or under 16 (GDPR). Nothing is collected from anyone.</p>
+    </div>
+
+    <!-- 10. YOUR RIGHTS -->
+    <div class="policy-section" id="your-rights">
+      <span class="section-number">10</span>
+      <h2>Your rights</h2>
+      <p>Under GDPR (EU/EEA users), CCPA (California users), and similar privacy laws worldwide, you have rights including access to, correction of, and deletion of your personal data.</p>
+      <p>Because Marginalis collects no personal data, there is nothing for us to access, correct, or delete on our end. All your data lives on your device and in your iCloud account, both of which you control entirely.</p>
+      <p>To delete all your data: delete the Marginalis app from your iPhone. To remove data from iCloud: disable iCloud sync in Settings, then delete the app.</p>
+      <p>If you have any questions about your privacy rights, contact us at <a href="mailto:privacy@marginalis.app">privacy@marginalis.app</a>.</p>
+    </div>
+
+    <!-- 11. CHANGES -->
+    <div class="policy-section" id="changes">
+      <span class="section-number">11</span>
+      <h2>Changes to this policy</h2>
+      <p>If we make material changes to this privacy policy — for example, if a future version of the app introduces a feature that collects data — we will update this page and revise the "Last updated" date at the top. We will notify users of significant changes through an in-app notice.</p>
+      <p>We will never introduce data collection retroactively without clear notice and, where required by law, your consent.</p>
+    </div>
+
+    <!-- 12. CONTACT -->
+    <div class="policy-section" id="contact">
+      <span class="section-number">12</span>
+      <h2>Contact</h2>
+      <p>If you have any questions about this privacy policy or how Marginalis handles your data, please get in touch.</p>
+      <div class="contact-box">
+        <p><strong>Marginalis</strong></p>
+        <p>Developer: [Your Name]</p>
+        <p>Email: <a href="mailto:privacy@marginalis.app">privacy@marginalis.app</a></p>
+        <p>Website: <a href="https://marginalis.app">marginalis.app</a></p>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-brand">
+      <a href="/" class="wordmark">Marginalis</a>
+      <p class="footer-tagline">Reading that leaves a mark.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Contact</h4>
+      <a href="mailto:support@marginalis.app">support@marginalis.app</a>
+      <a href="mailto:hello@marginalis.app">hello@marginalis.app</a>
+    </div>
+    <div class="footer-col">
+      <h4>Legal</h4>
+      <a href="/privacy">Privacy Policy</a>
+    </div>
+    <div class="footer-copy">
+      <span>© 2026 Marginalis. All rights reserved.</span>
+      <span>Designed for iPhone · iOS 16+</span>
+    </div>
+  </footer>
+
+</body>
+</html>
