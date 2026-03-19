@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Support — Marginalis</title>
+  <meta name="description" content="Got a question about Marginalis? Find answers to frequently asked questions or contact us directly.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --cream: #F5F0E8;
+      --cream-dark: #EDE7D8;
+      --navy: #1C1C2E;
+      --navy-mid: #2E2E45;
+      --ink: #2A2A2A;
+      --ink-muted: #6B6B6B;
+      --ink-faint: #9B9B9B;
+      --rule: #D6CEBC;
+      --blue: #007AFF;
+      --white: #FFFFFF;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--cream);
+      color: var(--ink);
+      font-size: 16px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── HEADER ── */
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 2rem 4rem;
+      border-bottom: 0.5px solid var(--rule);
+    }
+
+    .wordmark {
+      font-family: 'EB Garamond', Georgia, serif;
+      font-size: 1.5rem;
+      font-weight: 500;
+      letter-spacing: 0.02em;
+      color: var(--ink);
+      text-decoration: none;
+    }
+
+    .wordmark span {
+      font-style: italic;
+      color: var(--ink-muted);
+      font-size: 0.9rem;
+      font-weight: 400;
+      margin-left: 0.75rem;
+    }
+
+    nav a {
+      font-size: 0.85rem;
+      font-weight: 400;
+      color: var(--ink-muted);
+      text-decoration: none;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      margin-left: 2rem;
+      transition: color 0.2s;
+    }
+
+    nav a:hover { color: var(--ink); }
+
+    /* ── PAGE HERO ── */
+    .page-hero {
+      padding: 5rem 4rem 4rem;
+      border-bottom: 0.5px solid var(--rule);
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      gap: 4rem;
+      align-items: end;
+    }
+
+    .page-hero-label {
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--ink-faint);
+      margin-bottom: 1rem;
+      display: block;
+    }
+
+    .page-hero-title {
+      font-family: 'EB Garamond', Georgia, serif;
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      font-weight: 400;
+      line-height: 1.05;
+      color: var(--ink);
+    }
+
+    .page-hero-title em {
+      font-style: italic;
+      color: var(--ink-muted);
+    }
+
+    .page-hero-meta {
+      font-size: 0.8rem;
+      color: var(--ink-faint);
+      letter-spacing: 0.04em;
+      margin-bottom: 0.5rem;
+    }
+
+    .page-hero-summary {
+      font-family: 'EB Garamond', Georgia, serif;
+      font-size: 1.2rem;
+      font-style: italic;
+      color: var(--ink-muted);
+      line-height: 1.6;
+      max-width: 55ch;
+    }
+
+    /* ── CONTENT ── */
+    .content {
+      max-width: 780px;
+      margin: 0 auto;
+      padding: 4rem 4rem 6rem;
+    }
+
+    /* ── FAQ ── */
+    .faq-section {
+      margin-bottom: 4rem;
+    }
+
+    .faq-section-label {
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--ink-faint);
+      margin-bottom: 2rem;
+      display: block;
+    }
+
+    .faq-item {
+      border-top: 0.5px solid var(--rule);
+      padding: 1.75rem 0;
+    }
+
+    .faq-item:last-child {
+      border-bottom: 0.5px solid var(--rule);
+    }
+
+    .faq-question {
+      font-family: 'EB Garamond', Georgia, serif;
+      font-size: 1.2rem;
+      font-weight: 500;
+      color: var(--ink);
+      margin-bottom: 0.75rem;
+      line-height: 1.3;
+    }
+
+    .faq-answer {
+      font-size: 0.95rem;
+      color: var(--ink-muted);
+      line-height: 1.85;
+      max-width: 65ch;
+    }
+
+    .faq-answer strong {
+      color: var(--ink);
+      font-weight: 500;
+    }
+
+    /* ── CONTACT BOX ── */
+    .contact-section {
+      margin-top: 4rem;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+    }
+
+    .contact-box {
+      background: var(--navy);
+      padding: 2.5rem;
+    }
+
+    .contact-box-label {
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(245,240,232,0.5);
+      margin-bottom: 1rem;
+      display: block;
+    }
+
+    .contact-box h3 {
+      font-family: 'EB Garamond', Georgia, serif;
+      font-size: 1.5rem;
+      font-weight: 400;
+      color: var(--cream);
+      margin-bottom: 0.75rem;
+      line-height: 1.2;
+    }
+
+    .contact-box p {
+      font-size: 0.9rem;
+      color: rgba(245,240,232,0.6);
+      margin-bottom: 1.5rem;
+      line-height: 1.7;
+    }
+
+    .contact-box a.btn {
+      display: inline-block;
+      background: var(--cream);
+      color: var(--navy);
+      padding: 0.75rem 1.5rem;
+      font-size: 0.875rem;
+      font-weight: 500;
+      text-decoration: none;
+      border-radius: 2px;
+      transition: opacity 0.2s;
+    }
+
+    .contact-box a.btn:hover { opacity: 0.85; }
+
+    .legal-box {
+      background: var(--cream-dark);
+      padding: 2.5rem;
+    }
+
+    .legal-box-label {
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--ink-faint);
+      margin-bottom: 1rem;
+      display: block;
+    }
+
+    .legal-box h3 {
+      font-family: 'EB Garamond', Georgia, serif;
+      font-size: 1.5rem;
+      font-weight: 400;
+      color: var(--ink);
+      margin-bottom: 0.75rem;
+      line-height: 1.2;
+    }
+
+    .legal-box p {
+      font-size: 0.9rem;
+      color: var(--ink-muted);
+      margin-bottom: 1.5rem;
+      line-height: 1.7;
+    }
+
+    .legal-box a.btn {
+      display: inline-block;
+      background: var(--navy);
+      color: var(--cream);
+      padding: 0.75rem 1.5rem;
+      font-size: 0.875rem;
+      font-weight: 500;
+      text-decoration: none;
+      border-radius: 2px;
+      transition: background 0.2s;
+    }
+
+    .legal-box a.btn:hover { background: var(--navy-mid); }
+
+    /* ── FOOTER ── */
+    footer {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      padding: 3rem 4rem;
+      gap: 2rem;
+      align-items: start;
+      border-top: 0.5px solid var(--rule);
+    }
+
+    .footer-brand .wordmark {
+      display: block;
+      margin-bottom: 0.75rem;
+    }
+
+    .footer-tagline {
+      font-family: 'EB Garamond', Georgia, serif;
+      font-style: italic;
+      font-size: 0.95rem;
+      color: var(--ink-faint);
+    }
+
+    .footer-col h4 {
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--ink-faint);
+      margin-bottom: 1rem;
+    }
+
+    .footer-col a {
+      display: block;
+      font-size: 0.875rem;
+      color: var(--ink-muted);
+      text-decoration: none;
+      margin-bottom: 0.5rem;
+      transition: color 0.2s;
+    }
+
+    .footer-col a:hover { color: var(--ink); }
+
+    .footer-copy {
+      grid-column: 1 / -1;
+      padding-top: 2rem;
+      border-top: 0.5px solid var(--rule);
+      font-size: 0.75rem;
+      color: var(--ink-faint);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      header { padding: 1.5rem 2rem; }
+      nav { display: none; }
+      .page-hero { grid-template-columns: 1fr; padding: 3rem 2rem 2.5rem; gap: 1.5rem; }
+      .content { padding: 2.5rem 2rem 4rem; }
+      .contact-section { grid-template-columns: 1fr; }
+      footer { grid-template-columns: 1fr; padding: 2.5rem 2rem; }
+      .footer-copy { flex-direction: column; gap: 0.5rem; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header>
+    <a href="/" class="wordmark">Marginalis <span>Reading Journal</span></a>
+    <nav>
+      <a href="/#features">Features</a>
+      <a href="/#pricing">Pricing</a>
+      <a href="/support">Support</a>
+    </nav>
+  </header>
+
+  <!-- PAGE HERO -->
+  <div class="page-hero">
+    <div>
+      <span class="page-hero-label">Help</span>
+      <h1 class="page-hero-title">Support<br><em>Centre.</em></h1>
+    </div>
+    <div>
+      <p class="page-hero-summary">Got a question about Marginalis? You're in the right place.</p>
+    </div>
+  </div>
+
+  <!-- CONTENT -->
+  <div class="content">
+
+    <!-- FAQ -->
+    <div class="faq-section">
+      <span class="faq-section-label">Frequently Asked Questions</span>
+
+      <div class="faq-item">
+        <p class="faq-question">How do I add a book?</p>
+        <p class="faq-answer">Tap the <strong>+</strong> button in your Library. You can scan the barcode on the back of any book, search by title or author, or enter details manually. Cover images and metadata fetch automatically via Open Library.</p>
+      </div>
+
+      <div class="faq-item">
+        <p class="faq-question">How does Live Text capture work?</p>
+        <p class="faq-answer">When creating a note, select the camera capture mode and point your iPhone at any page. iOS Live Text will let you select the text directly from the image. Tap to confirm and your quote drops into the note form — no typing required. Requires iOS 16 or later.</p>
+      </div>
+
+      <div class="faq-item">
+        <p class="faq-question">How do I unlock unlimited books?</p>
+        <p class="faq-answer">Tap <strong>Settings</strong> and select <strong>Unlock Marginalis</strong>. A one-time purchase of $4.99 (launch price $2.99) removes the 5-book limit and unlocks Markdown export and full reading stats. No subscription, ever.</p>
+      </div>
+
+      <div class="faq-item">
+        <p class="faq-question">Is my data safe if I change phones?</p>
+        <p class="faq-answer">Yes. If iCloud sync is enabled, your entire library and notes are backed up to your iCloud account and will restore automatically on a new device. You can enable iCloud sync in <strong>Settings</strong>.</p>
+      </div>
+
+      <div class="faq-item">
+        <p class="faq-question">How does iCloud sync work?</p>
+        <p class="faq-answer">Marginalis uses iCloud to sync your library and notes privately across your iPhone and iPad. No Marginalis account is required — it uses your existing Apple ID. Enable it in <strong>Settings → iCloud Sync</strong>.</p>
+      </div>
+
+      <div class="faq-item">
+        <p class="faq-question">What is AI Book Summary and why don't I see it?</p>
+        <p class="faq-answer">AI Book Summary generates an intelligent summary of your notes for any book, powered entirely on-device by Apple Intelligence. It requires iOS 18 or later with Apple Intelligence enabled on a supported device. The feature is automatically hidden on unsupported devices.</p>
+      </div>
+
+      <div class="faq-item">
+        <p class="faq-question">How do I export my notes?</p>
+        <p class="faq-answer">Open any book, tap the <strong>···</strong> menu in the top right, and select <strong>Export Notes</strong>. Your notes export as a Markdown file you can share to any app. Available with Marginalis Unlock.</p>
+      </div>
+
+      <div class="faq-item">
+        <p class="faq-question">How do I use the Home Screen widget?</p>
+        <p class="faq-answer">Long press your iPhone Home Screen, tap the <strong>+</strong> button, search for <strong>Marginalis</strong>, and add the widget. It displays a random quote from your library, refreshed daily.</p>
+      </div>
+
+    </div>
+
+    <!-- CONTACT & LEGAL -->
+    <div class="contact-section">
+      <div class="contact-box">
+        <span class="contact-box-label">Still need help?</span>
+        <h3>Get in touch</h3>
+        <p>Email us and we'll get back to you within 24 hours.</p>
+        <a href="mailto:support@marginalis.app" class="btn">support@marginalis.app</a>
+      </div>
+      <div class="legal-box">
+        <span class="legal-box-label">Legal</span>
+        <h3>Privacy Policy</h3>
+        <p>Marginalis collects no personal data. Your reading life stays on your device.</p>
+        <a href="/privacy" class="btn">Read Privacy Policy</a>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-brand">
+      <a href="/" class="wordmark">Marginalis</a>
+      <p class="footer-tagline">Reading that leaves a mark.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Contact</h4>
+      <a href="mailto:support@marginalis.app">support@marginalis.app</a>
+      <a href="mailto:hello@marginalis.app">hello@marginalis.app</a>
+    </div>
+    <div class="footer-col">
+      <h4>Legal</h4>
+      <a href="/privacy">Privacy Policy</a>
+    </div>
+    <div class="footer-copy">
+      <span>© 2026 Marginalis. All rights reserved.</span>
+      <span>Designed for iPhone · iOS 16+</span>
+    </div>
+  </footer>
+
+</body>
+</html>
